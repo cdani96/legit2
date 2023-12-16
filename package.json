@@ -1,6 +1,6 @@
 {
-  "name": "@captainsafia/legit",
-  "version": "3.1.0",
+  "name": "@cdani96/legit2",
+  "version": "0.1.0",
   "description": "Automatically add a license to a GitHub project",
   "type": "module",
   "bin": {
@@ -16,7 +16,7 @@
     "open",
     "source"
   ],
-  "author": "Safia Abdalla <safia@safia.rocks>",
+  "author": "Daniel <dani@cdaniel.rf.gd>",
   "license": "MIT",
   "dependencies": {
     "@captainsafia/commentator": "^1.2.0",
