@@ -1,5 +1,5 @@
 import fs from "fs";
-
+import chalk from "chalk";
 import { program } from 'commander'
 import fullName from 'fullname'
 import { username } from 'username'
@@ -10,6 +10,8 @@ const packageInfo = require('../package.json')
 const commentator = require('@captainsafia/commentator');
 const path = require('node:path')
 const licensesPath = path.basename('/../licenses/');
+
+const log = console.log;
 
 function validateLicense(license) {
   license = license.toLowerCase();
@@ -25,8 +27,8 @@ program
   .description('List all available licenses')
   .action(function() {
     fs.readdir(licensesPath, function (error, items) {
-      if (error) console.log(error);
-      items.forEach(function(item) { console.log(item); });
+      if (error) log(chalk.bold.red(error));
+      items.forEach(function(item) { log(chalk.cyan.italic(item)); });
     })
   });
 
@@ -84,19 +86,19 @@ program
         fs.readFile(filePath, 'utf8', function(error, data) {
           const newData = result + '\n' + data;
           fs.writeFile(filePath, newData, 'utf8', function(error) {
-            if (error) return console.log(error);
+            if (error) return log(chalk.red(error));
           });
         });
       });
     } else {
       const licenseFile = licensesPath + licenseArg;
       fs.readFile(licenseFile, 'utf8', function (error, data) {
-        if (error) return console.log(error);
+        if (error) return log(chalk.red(error));
         if (placeholders[licenseArg]) {
           var result = data.replace(user, userArg).replace(year, yearArg);
         }
         fs.writeFile(path.join(cwd, '/LICENSE'), result || data, 'utf8', function (error) {
-          if (error) return console.log(error);
+          if (error) return log(chalk.red(error));
         });
       });
     }
