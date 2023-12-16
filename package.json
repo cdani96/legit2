@@ -1,0 +1,29 @@
+{
+  "name": "@captainsafia/legit",
+  "version": "3.1.0",
+  "description": "Automatically add a license to a GitHub project",
+  "type": "module",
+  "bin": {
+    "legit": "src/index.js"
+  },
+  "scripts": {
+    "prepublish": "find licenses -type f -maxdepth 1 -delete",
+    "postinstall": "node src/load-licenses.js"
+  },
+  "keywords": [
+    "license",
+    "utility",
+    "open",
+    "source"
+  ],
+  "author": "Safia Abdalla <safia@safia.rocks>",
+  "license": "MIT",
+  "dependencies": {
+    "@captainsafia/commentator": "^1.2.0",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "fullname": "^5.0.0",
+    "node-fetch": "^3.3.2",
+    "username": "^7.0.0"
+  }
+}
