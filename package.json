@@ -4,7 +4,7 @@
   "description": "Automatically add a license to a GitHub project",
   "type": "module",
   "bin": {
-    "legit": "src/index.js"
+    "legit": "src/inde.js"
   },
   "scripts": {
     "prepublish": "find licenses -type f -maxdepth 1 -delete",
