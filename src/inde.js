@@ -39,7 +39,7 @@ program
       const items = await fs.readdir(licensesPath);
       items.forEach((item) => log(chalk.cyan.italic(item)));
     } catch (error) {
-      log(chalk.bold.red(error));
+      log(chalk.red.bold("Error:", error));
     }
   });
 
@@ -55,8 +55,13 @@ program
     const yearArg = this.year || new Date().getFullYear();
     const userArg = this.user || (await fullName()) || username.sync();
 
-    const user = placeholders[licenseArg]["user"];
-    const year = placeholders[licenseArg]["year"];
+    const placeholderInfo = placeholders[licenseArg];
+    if (!placeholderInfo) {
+      return console.log("Invalid license argument:", licenseArg);
+    }
+
+    const user = placeholderInfo["user"];
+    const year = placeholderInfo["year"];
 
     const cwd = process.cwd();
 
